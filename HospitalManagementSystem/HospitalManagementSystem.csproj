@@ -14,7 +14,10 @@
     <None Remove="Fonts\Montserrat\static\Montserrat-Bold.ttf" />
     <None Remove="Fonts\Montserrat\static\Montserrat-Medium.ttf" />
     <None Remove="Fonts\Montserrat\static\Montserrat-SemiBold.ttf" />
+    <None Remove="Icons\dropdown.png" />
+    <None Remove="Icons\email.png" />
     <None Remove="Icons\person.png" />
+    <None Remove="Icons\phone.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +26,18 @@
     <Resource Include="Fonts\Montserrat\static\Montserrat-Bold.ttf" />
     <Resource Include="Fonts\Montserrat\static\Montserrat-Medium.ttf" />
     <Resource Include="Fonts\Montserrat\static\Montserrat-SemiBold.ttf" />
+    <Resource Include="Icons\dropdown.png" />
+    <Resource Include="Icons\email.png" />
     <Resource Include="Icons\person.png" />
+    <Resource Include="Icons\phone.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
   </ItemGroup>
 
 </Project>

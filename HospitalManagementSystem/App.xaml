@@ -4,6 +4,50 @@
              xmlns:local="clr-namespace:HospitalManagementSystem"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="RoundedTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <!--Rounds the corners-->
+                            <Border CornerRadius="10" BorderBrush="Gray" Background="White"  BorderThickness="1">
+                                <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </Border>
+                            <!--Adds image to the textbox-->
+                            <Image Source="/HospitalManagementSystem;component/Icons/person.png" Height="24" VerticalAlignment="Center" Margin="-180,0,0,0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Padding -->
+            <Setter Property="Padding" Value="30,5,5,5"/>
+            <!-- Text alignment -->
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+             
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="#BC194F">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" Color="#FF001E36" Opacity="0.5" ShadowDepth="3" Direction="-30"/>
+                            </Border.Effect>
+                        </Border>
+
+                    </ControlTemplate>
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+        <FontFamily x:Key="MontserratRegular">/HospitalManagementSystem;component/Fonts/Montserrat/static/#Montserrat</FontFamily>
+        <FontFamily x:Key="MontserratMedium">/HospitalManagementSystem;component/Fonts/Montserrat/static/#Montserrat Medium</FontFamily>
+        <FontFamily x:Key="MontserratSemiBold">/HospitalManagementSystem;component/Fonts/Montserrat/static/#Montserrat SemiBold</FontFamily>
+        <FontFamily x:Key="MontserratBold">/HospitalManagementSystem;component/Fonts/Montserrat/static/#Montserrat Bold</FontFamily>
     </Application.Resources>
 </Application>
