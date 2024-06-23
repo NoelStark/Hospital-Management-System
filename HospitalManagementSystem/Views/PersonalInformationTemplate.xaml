@@ -39,7 +39,7 @@
 
             <!-- First Name Textbox -->
             <Label Margin="439,190,0,0" Foreground="White">First Name</Label>
-            <TextBox HorizontalAlignment="Left" Margin="439,214,0,0" behaviors:TextBoxFocusBehavior.PlaceholderText="First Name"  TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
+            <TextBox HorizontalAlignment="Left" Margin="439,214,0,0" behaviors:TextBoxFocusBehavior.PlaceholderText="First Name"  TextWrapping="Wrap" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
             <!-- Last Name Textbox -->
             <Label Margin="709,190,0,0" Foreground="White">Last Name</Label>
             <TextBox HorizontalAlignment="Left" Margin="709,214,0,0" behaviors:TextBoxFocusBehavior.PlaceholderText="Last Name" TextWrapping="Wrap" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
@@ -68,6 +68,17 @@
                 Foreground="White" 
                 FontSize="16"
                 
+                >Next
+            </Button>
+
+            <Button 
+                Width="138" Height="46" 
+                Command="{Binding OnDummyDataCommand}" 
+                Margin="440,420,502,166" 
+                Style="{StaticResource ButtonStyle}" 
+                Foreground="White" 
+                FontSize="16"
+    
                 >Next
             </Button>
         </Grid>

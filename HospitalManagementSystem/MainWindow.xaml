@@ -13,8 +13,8 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/HospitalManagementSystem;component/PersonalInformationTemplate.xaml"/>
-                <ResourceDictionary Source="/HospitalManagementSystem;component/AddressInformationTemplate.xaml"/>
+                <ResourceDictionary Source="/HospitalManagementSystem;component/Views/PersonalInformationTemplate.xaml"/>
+                <ResourceDictionary Source="/HospitalManagementSystem;component/Views/AddressInformationTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

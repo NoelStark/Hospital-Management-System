@@ -1,0 +1,202 @@
+[
+    {
+        "Country": "Germany",
+        "Cities": [
+            "Berlin",
+            "Hamburg",
+            "Munich",
+            "Cologne",
+            "Frankfurt"
+        ]
+    },
+    {
+        "Country": "France",
+        "Cities": [
+            "Paris",
+            "Marseille",
+            "Lyon",
+            "Toulouse",
+            "Nice"
+        ]
+    },
+    {
+        "Country": "Italy",
+        "Cities": [
+            "Rome",
+            "Milan",
+            "Naples",
+            "Turin",
+            "Palermo"
+        ]
+    },
+    {
+        "Country": "Spain",
+        "Cities": [
+            "Madrid",
+            "Barcelona",
+            "Valencia",
+            "Seville",
+            "Zaragoza"
+        ]
+    },
+    {
+        "Country": "Poland",
+        "Cities": [
+            "Warsaw",
+            "Krakow",
+            "Lodz",
+            "Wroclaw",
+            "Poznan"
+        ]
+    },
+    {
+        "Country": "Netherlands",
+        "Cities": [
+            "Amsterdam",
+            "Rotterdam",
+            "The Hague",
+            "Utrecht",
+            "Eindhoven"
+        ]
+    },
+    {
+        "Country": "Belgium",
+        "Cities": [
+            "Brussels",
+            "Antwerp",
+            "Ghent",
+            "Charleroi",
+            "Li\u00e8ge"
+        ]
+    },
+    {
+        "Country": "Sweden",
+        "Cities": [
+            "Stockholm",
+            "Gothenburg",
+            "Malmö",
+            "Uppsala",
+            "Västerås"
+        ]
+    },
+    {
+        "Country": "Austria",
+        "Cities": [
+            "Vienna",
+            "Graz",
+            "Linz",
+            "Salzburg",
+            "Innsbruck"
+        ]
+    },
+    {
+        "Country": "Switzerland",
+        "Cities": [
+            "Zurich",
+            "Geneva",
+            "Basel",
+            "Lausanne",
+            "Bern"
+        ]
+    },
+    {
+        "Country": "Greece",
+        "Cities": [
+            "Athens",
+            "Thessaloniki",
+            "Patras",
+            "Heraklion",
+            "Larissa"
+        ]
+    },
+    {
+        "Country": "Portugal",
+        "Cities": [
+            "Lisbon",
+            "Porto",
+            "Amadora",
+            "Braga",
+            "Coimbra"
+        ]
+    },
+    {
+        "Country": "Norway",
+        "Cities": [
+            "Oslo",
+            "Bergen",
+            "Stavanger",
+            "Trondheim",
+            "Drammen"
+        ]
+    },
+    {
+        "Country": "Finland",
+        "Cities": [
+            "Helsinki",
+            "Espoo",
+            "Tampere",
+            "Vantaa",
+            "Oulu"
+        ]
+    },
+    {
+        "Country": "Denmark",
+        "Cities": [
+            "Copenhagen",
+            "Aarhus",
+            "Odense",
+            "Aalborg",
+            "Esbjerg"
+        ]
+    },
+    {
+        "Country": "Ireland",
+        "Cities": [
+            "Dublin",
+            "Cork",
+            "Limerick",
+            "Galway",
+            "Waterford"
+        ]
+    },
+    {
+        "Country": "Hungary",
+        "Cities": [
+            "Budapest",
+            "Debrecen",
+            "Szeged",
+            "Miskolc",
+            "P\u00e9cs"
+        ]
+    },
+    {
+        "Country": "Czech Republic",
+        "Cities": [
+            "Prague",
+            "Brno",
+            "Ostrava",
+            "Plze\u0148",
+            "Liberec"
+        ]
+    },
+    {
+        "Country": "Romania",
+        "Cities": [
+            "Bucharest",
+            "Cluj-Napoca",
+            "Timi\u0219oara",
+            "Ia\u0219i",
+            "Constan\u021ba"
+        ]
+    },
+    {
+        "Country": "Bulgaria",
+        "Cities": [
+            "Sofia",
+            "Plovdiv",
+            "Varna",
+            "Burgas",
+            "Ruse"
+        ]
+    }
+]

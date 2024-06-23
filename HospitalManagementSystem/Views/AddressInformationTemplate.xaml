@@ -35,7 +35,8 @@
 
             <!-- Country Textbox -->
             <Label Margin="439,190,0,0" Foreground="White">Country</Label>
-            <TextBox HorizontalAlignment="Left" Margin="439,214,0,0" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="Country" Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Margin="439,-250,0,0" Width="214" Height="31" ></ComboBox>
+            <!--<TextBox HorizontalAlignment="Left" Margin="439,214,0,0" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="Country" Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>-->
             
             <!--- City Textbox-->
             <Label Margin="439,260,0,0" Foreground="White">City</Label>
