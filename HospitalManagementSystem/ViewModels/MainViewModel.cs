@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -22,6 +23,8 @@ namespace HospitalManagementSystem.ViewModels
         private string _country = "Country", _street = "Street", _postalcode = "12345", _city = "City", _state = "State";
         private List<CountryData>? _countries;
         private List<string> _cities;
+        private ObservableCollection<string> _filteredCountries;
+        private string _selectedCountry, _countrySearch;
 
         public List<string> Countries { get; set; }
 
@@ -101,6 +104,35 @@ namespace HospitalManagementSystem.ViewModels
             set { _state = value; }
         }
 
+        public ObservableCollection<string> FilteredCountries
+        {
+            get => _filteredCountries;
+            set
+            {
+                _filteredCountries = value;
+                OnPropertyChanged(nameof(FilteredCountries));
+            }
+        }
+
+        public string CountrySearch
+        {
+            get { return _countrySearch; }
+            set
+            {
+                _countrySearch = value;
+                FilterCountries();
+
+            }
+        }
+
+        public string SelectedCountry
+        {
+            get { return _selectedCountry; }
+            set
+            {
+                _selectedCountry = value;
+            }
+        }
         #endregion
 
         public string CurrentViewKey
@@ -142,7 +174,18 @@ namespace HospitalManagementSystem.ViewModels
             _countries = JsonSerializer.Deserialize<List<CountryData>>(jsonFile);
             if(_countries != null)
             {
-                Countries = _countries.Select(x => x.Country).ToList();
+                _filteredCountries =  new ObservableCollection<string>(_countries.Select(x => x.Country).ToList());
+            }
+        }
+
+        private void FilterCountries()
+        {
+            if (_countrySearch != "")
+            {
+
+                var filtered = _countries.Where(x => x.Country.StartsWith(_countrySearch.ToString(), StringComparison.InvariantCultureIgnoreCase)).
+                Select(x => x.Country).ToList();
+                FilteredCountries = new ObservableCollection<string>(filtered);
             }
         }
 
