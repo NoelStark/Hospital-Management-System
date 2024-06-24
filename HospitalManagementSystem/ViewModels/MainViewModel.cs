@@ -23,9 +23,10 @@ namespace HospitalManagementSystem.ViewModels
         private string _country = "Country", _street = "Street", _postalcode = "12345", _city = "City", _state = "State";
         private List<CountryData>? _countries;
         private List<string> _cities;
-        private ObservableCollection<string> _filteredCountries;
-        private string _selectedCountry, _countrySearch;
+        private ObservableCollection<string> _filteredCountries, _filteredCities;
+        private string _selectedCountry, _countrySearch, _selectedCity, _citySearch;
 
+        //Needed or not?
         public List<string> Countries { get; set; }
 
         private Dictionary<string, string> _customerProperties = new Dictionary<string, string>
@@ -114,14 +115,34 @@ namespace HospitalManagementSystem.ViewModels
             }
         }
 
+        public ObservableCollection<string> FilteredCities
+        {
+            get { return _filteredCities; }
+            set
+            {
+                _filteredCities = value;
+                OnPropertyChanged(nameof(FilteredCities));
+            }
+        }
+
         public string CountrySearch
         {
             get { return _countrySearch; }
             set
             {
                 _countrySearch = value;
-                FilterCountries();
+                Filter("Country");
 
+            }
+        }
+
+        public string CitySearch
+        {
+            get { return _citySearch; }
+            set
+            {
+                _citySearch = value;
+                Filter("City");
             }
         }
 
@@ -131,6 +152,18 @@ namespace HospitalManagementSystem.ViewModels
             set
             {
                 _selectedCountry = value;
+                CountryData country = _countries.FirstOrDefault(c => c.Country == _selectedCountry);
+                var cities = country.Cities.ToList();
+                FilteredCities = new ObservableCollection<string>(cities);
+            }
+        }
+
+        public string SelectedCity
+        {
+            get { return _selectedCity; }
+            set
+            {
+                _selectedCity = value;
             }
         }
         #endregion
@@ -178,15 +211,30 @@ namespace HospitalManagementSystem.ViewModels
             }
         }
 
-        private void FilterCountries()
+        private void Filter(string obj)
         {
-            if (_countrySearch != "")
+            if(obj == "Country")
             {
+                if (_countrySearch != "")
+                {
+                    var filtered = _countries.Where(x => x.Country.StartsWith(_countrySearch.ToString(), StringComparison.InvariantCultureIgnoreCase)).
+                   Select(x => x.Country).ToList();
+                    FilteredCountries = new ObservableCollection<string>(filtered);
 
-                var filtered = _countries.Where(x => x.Country.StartsWith(_countrySearch.ToString(), StringComparison.InvariantCultureIgnoreCase)).
-                Select(x => x.Country).ToList();
-                FilteredCountries = new ObservableCollection<string>(filtered);
+                    
+                }
             }
+            else if(obj == "City")
+            {
+                CountryData country = _countries.FirstOrDefault(c => c.Country == _selectedCountry);
+                if(country != null)
+                {
+
+                    var cities = country.Cities.Where( x => x.StartsWith(_citySearch.ToString(), StringComparison.InvariantCultureIgnoreCase));
+                    FilteredCities = new ObservableCollection<string>(cities);
+                }
+            }
+            
         }
 
         /// <summary>
