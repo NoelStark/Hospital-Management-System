@@ -15,6 +15,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/HospitalManagementSystem;component/Views/PersonalInformationTemplate.xaml"/>
                 <ResourceDictionary Source="/HospitalManagementSystem;component/Views/AddressInformationTemplate.xaml"/>
+                <ResourceDictionary Source="/HospitalManagementSystem;component/Views/PrivacyPolicyTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
@@ -32,6 +33,10 @@
                     <!--Trigger for the Address View-->
                     <DataTrigger Binding="{Binding CurrentViewKey}" Value="Address">
                         <Setter Property="ContentTemplate" Value="{StaticResource AddressInformationTemplate}"/>
+                    </DataTrigger>
+                    <!--Trigger for the Policy View-->
+                    <DataTrigger Binding="{Binding CurrentViewKey}" Value="PrivacyPolicyTemplate">
+                        <Setter Property="ContentTemplate" Value="{StaticResource PrivacyPolicyTemplate}"/>
                     </DataTrigger>
                 </Style.Triggers>   
             </Style>

@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
+using BusinessLayer;
 using EntityLayer;
 using HospitalManagementSystem.Commands;
 
@@ -23,25 +24,14 @@ namespace HospitalManagementSystem.ViewModels
         private string _country = "Country", _street = "Street", _postalcode = "12345", _city = "City", _state = "State";
         private List<CountryData>? _countries;
         private List<string> _cities;
-        private ObservableCollection<string> _filteredCountries, _filteredCities;
         private string _selectedCountry, _countrySearch, _selectedCity, _citySearch;
+        private FilterService _filterService;
+        private DataService _dataService;
 
         //Needed or not?
         public List<string> Countries { get; set; }
 
-        private Dictionary<string, string> _customerProperties = new Dictionary<string, string>
-        {
-            {"FirstName", "" },
-            {"LastName", "" },
-            {"SSN", "" },
-            {"Email", "" },
-            {"Phone_Number", "" },
-            {"Country", "" },
-            {"PostalCode", "" },
-            {"Street", "" },
-            {"City", "" },
-            {"State", "" }
-        };
+        private Dictionary<string, string> _customerProperties = new Dictionary<string, string>();
         public string FirstName
         {
             get { return _firstname; }
@@ -107,20 +97,20 @@ namespace HospitalManagementSystem.ViewModels
 
         public ObservableCollection<string> FilteredCountries
         {
-            get => _filteredCountries;
+            get => _filterService.FilteredCountries;
             set
             {
-                _filteredCountries = value;
+                _filterService.FilteredCountries = value;
                 OnPropertyChanged(nameof(FilteredCountries));
             }
         }
 
         public ObservableCollection<string> FilteredCities
         {
-            get { return _filteredCities; }
+            get { return _filterService.FilteredCities; }
             set
             {
-                _filteredCities = value;
+                _filterService.FilteredCities = value;
                 OnPropertyChanged(nameof(FilteredCities));
             }
         }
@@ -131,7 +121,7 @@ namespace HospitalManagementSystem.ViewModels
             set
             {
                 _countrySearch = value;
-                Filter("Country");
+                FilteredCountries = _filterService.FilterCountries(_countrySearch);
 
             }
         }
@@ -142,7 +132,7 @@ namespace HospitalManagementSystem.ViewModels
             set
             {
                 _citySearch = value;
-                Filter("City");
+                FilteredCities = _filterService.FilterCities(_selectedCountry, _citySearch);
             }
         }
 
@@ -152,9 +142,14 @@ namespace HospitalManagementSystem.ViewModels
             set
             {
                 _selectedCountry = value;
-                CountryData country = _countries.FirstOrDefault(c => c.Country == _selectedCountry);
-                var cities = country.Cities.ToList();
-                FilteredCities = new ObservableCollection<string>(cities);
+                CountryData? country = _countries.FirstOrDefault(c => c.Country == _selectedCountry);
+                if (country != null)
+                {
+                    var cities = country.Cities.ToList();
+                    FilteredCities = new ObservableCollection<string>(cities);
+                }
+                
+                
             }
         }
 
@@ -166,7 +161,6 @@ namespace HospitalManagementSystem.ViewModels
                 _selectedCity = value;
             }
         }
-        #endregion
 
         public string CurrentViewKey
         {
@@ -187,6 +181,7 @@ namespace HospitalManagementSystem.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         #region Commands
         public ICommand OnClickCommand { get; set; }
@@ -196,47 +191,13 @@ namespace HospitalManagementSystem.ViewModels
         {
             OnClickCommand = new RelayCommand(SwitchView);
             OnDummyDataCommand = new RelayCommand(DummyData);
-            CurrentViewKey = "Address";
-            LoadData();
+            CurrentViewKey = "PrivacyPolicyTemplate";
+            _dataService = new DataService();
+            _countries = new DataService().LoadCountries(@"C:\\Users\\noelstark\\source\\repos\\Hospital-Management-System\\HospitalManagementSystem\\Files\\europe_countries_cities.json");
+            _filterService = new FilterService(_countries);
         }
 
-        private void LoadData()
-        {
-            //TODO Relative and not absolute way to find file
-            var jsonFile = File.ReadAllText(@"C:\Users\noelstark\source\repos\Hospital-Management-System\HospitalManagementSystem\Files\europe_countries_cities.json");
-            _countries = JsonSerializer.Deserialize<List<CountryData>>(jsonFile);
-            if(_countries != null)
-            {
-                _filteredCountries =  new ObservableCollection<string>(_countries.Select(x => x.Country).ToList());
-            }
-        }
-
-        private void Filter(string obj)
-        {
-            if(obj == "Country")
-            {
-                if (_countrySearch != "")
-                {
-                    var filtered = _countries.Where(x => x.Country.StartsWith(_countrySearch.ToString(), StringComparison.InvariantCultureIgnoreCase)).
-                   Select(x => x.Country).ToList();
-                    FilteredCountries = new ObservableCollection<string>(filtered);
-
-                    
-                }
-            }
-            else if(obj == "City")
-            {
-                CountryData country = _countries.FirstOrDefault(c => c.Country == _selectedCountry);
-                if(country != null)
-                {
-
-                    var cities = country.Cities.Where( x => x.StartsWith(_citySearch.ToString(), StringComparison.InvariantCultureIgnoreCase));
-                    FilteredCities = new ObservableCollection<string>(cities);
-                }
-            }
-            
-        }
-
+       
         /// <summary>
         /// Fills the dicitonary with values and show the text view (address)
         /// on a button click
