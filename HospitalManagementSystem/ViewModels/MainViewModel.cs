@@ -22,11 +22,14 @@ namespace HospitalManagementSystem.ViewModels
         #region Binding Attributes
         private static string _firstname = "First Name", _lastname = "Last Name", _ssn = "YYYYMMDD-XXXX", _email = "example@gmail.com", _confirmemail = "example@gmail.com", _phone = "Phone Number";
         private string _country = "Country", _street = "Street", _postalcode = "12345", _city = "City", _state = "State";
+        private bool _privacypolicyChecked, _shareinfoChecked;
         private List<CountryData>? _countries;
         private List<string> _cities;
         private string _selectedCountry, _countrySearch, _selectedCity, _citySearch;
         private FilterService _filterService;
         private DataService _dataService;
+
+        
 
         //Needed or not?
         public List<string> Countries { get; set; }
@@ -122,7 +125,6 @@ namespace HospitalManagementSystem.ViewModels
             {
                 _countrySearch = value;
                 FilteredCountries = _filterService.FilterCountries(_countrySearch);
-
             }
         }
 
@@ -147,19 +149,14 @@ namespace HospitalManagementSystem.ViewModels
                 {
                     var cities = country.Cities.ToList();
                     FilteredCities = new ObservableCollection<string>(cities);
-                }
-                
-                
+                }                             
             }
         }
 
         public string SelectedCity
         {
             get { return _selectedCity; }
-            set
-            {
-                _selectedCity = value;
-            }
+            set { _selectedCity = value;}
         }
 
         public string CurrentViewKey
@@ -171,6 +168,22 @@ namespace HospitalManagementSystem.ViewModels
                 OnPropertyChanged();
             }
         }
+        
+        public bool PrivacyPolicyChecked
+        {
+            get { return _privacypolicyChecked; }
+            set 
+            {  
+                _privacypolicyChecked = value;
+                OnPropertyChanged(nameof(PrivacyPolicyChecked));
+            }
+        }
+
+        public bool ShareInfoChecked
+        {
+            get { return _shareinfoChecked; }
+            set { _shareinfoChecked = value;}
+        }
 
         public List<string> Cities
         {
@@ -181,11 +194,14 @@ namespace HospitalManagementSystem.ViewModels
                 OnPropertyChanged();
             }
         }
+
         #endregion
 
         #region Commands
         public ICommand OnClickCommand { get; set; }
         public ICommand OnDummyDataCommand { get; set; }
+
+        
         #endregion
         public MainViewModel()
         {
@@ -205,26 +221,35 @@ namespace HospitalManagementSystem.ViewModels
         /// <param name="x"></param>
         private void SwitchView(object x)
         {
-            if(CurrentViewKey == "PersonalInformation")
+            if(!_privacypolicyChecked)
             {
-                _customerProperties["FirstName"] = _firstname;
-                _customerProperties["LastName"] = _lastname;
-                _customerProperties["SSN"] = _ssn;
-                _customerProperties["Email"] = _email;
-                _customerProperties["Phone_Number"] = _phone;
+                MessageBox.Show("Please Accept the Privacy Policy");
             }
-            //TODO Should be an else if-statement and not if-statement
-            if(CurrentViewKey == "Address" || dummyData)
+            else
             {
-                _customerProperties["Country"] = _country;
-                _customerProperties["State"] = _state;
-                _customerProperties["PostalCode"] = _postalcode;
-                _customerProperties["Street"] = _street;
-                _customerProperties["City"] = _city;
-            }
-            CreateCustomer();
 
-            CurrentViewKey = CurrentViewKey == "PersonalInformation" ? "Address" : "PersonalInformation";
+                if(CurrentViewKey == "PersonalInformation")
+                {
+                    _customerProperties["FirstName"] = _firstname;
+                    _customerProperties["LastName"] = _lastname;
+                    _customerProperties["SSN"] = _ssn;
+                    _customerProperties["Email"] = _email;
+                    _customerProperties["Phone_Number"] = _phone;
+                }
+                //TODO Should be an else if-statement and not if-statement
+                if(CurrentViewKey == "Address" || dummyData)
+                {
+                    _customerProperties["Country"] = _country;
+                    _customerProperties["State"] = _state;
+                    _customerProperties["PostalCode"] = _postalcode;
+                    _customerProperties["Street"] = _street;
+                    _customerProperties["City"] = _city;
+                }
+
+                CustomerController.CreateCustomer(_customerProperties, _shareinfoChecked);
+
+                CurrentViewKey = CurrentViewKey == "PersonalInformation" ? "Address" : "PersonalInformation";
+            }
         }
         /// <summary>
         /// A Method that just fills in some values
@@ -251,25 +276,7 @@ namespace HospitalManagementSystem.ViewModels
         /// in the dictionary
         /// </summary>
         /// <returns></returns>
-        private Customer CreateCustomer()
-        {
-            Customer customer = new Customer();
-            foreach(var property in _customerProperties)
-            {
-                PropertyInfo? propertyInfo = typeof(Customer).GetProperty(property.Key);
-                //Outer for-loop checks if property exists and inner loop converts value to type 'long'
-                if(propertyInfo != null)
-                {
-                    if(propertyInfo.PropertyType != typeof(string))
-                    {
-                        propertyInfo.SetValue(customer, Convert.ToInt64(property.Value));
-                        continue;
-                    }
-                    propertyInfo.SetValue(customer, property.Value);
-                }
-            }
-            return customer;
-        }
+        
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {

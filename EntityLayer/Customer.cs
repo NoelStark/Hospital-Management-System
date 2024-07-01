@@ -10,5 +10,6 @@ namespace EntityLayer
     {
         public int CustomerID { get; set; }
         public DateTime AccountCreationDate { get; set; }
+        public bool ShareData { get; set; }
     }
 }
