@@ -28,7 +28,7 @@ namespace BusinessLayer
             customer.AccountCreationDate = DateTime.Now.Date;
             customer.ShareData = _shareData;
 
-            _unitOfWork.CustomerRepo.Add(customer);
+            //_unitOfWork.CustomerRepo.Add(customer);
         }
 
         public void UpdateCustomer(Customer customer) => _unitOfWork.CustomerRepo.Update(customer);

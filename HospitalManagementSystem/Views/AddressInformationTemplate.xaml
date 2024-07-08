@@ -42,9 +42,9 @@
                 Width="214" Height="31"
                 IsEditable="True"
                 StaysOpenOnEdit="True"
-                Text="{Binding CountrySearch, UpdateSourceTrigger=PropertyChanged}"
-                ItemsSource="{Binding FilteredCountries, Mode=TwoWay}"
-                SelectedItem="{Binding SelectedCountry}"
+                Text="{Binding AddressInfo.CountrySearch, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding AddressInfo.FilteredCountries, Mode=TwoWay}"
+                SelectedItem="{Binding AddressInfo.SelectedCountry}"
                 IsTextSearchEnabled="False">
             </ComboBox>
             <!--<TextBox HorizontalAlignment="Left" Margin="439,214,0,0" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="Country" Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>-->
@@ -58,24 +58,24 @@
                  Width="214" Height="31"
                  IsEditable="True"
                  StaysOpenOnEdit="True"
-                 Text="{Binding CitySearch, UpdateSourceTrigger=PropertyChanged}"
-                 ItemsSource="{Binding FilteredCities, Mode=TwoWay}"
-                 SelectedItem="{Binding SelectedCity}"
+                 Text="{Binding AddressInfo.CitySearch, UpdateSourceTrigger=PropertyChanged}"
+                 ItemsSource="{Binding AddressInfo.FilteredCities, Mode=TwoWay}"
+                 SelectedItem="{Binding AddressInfo.SelectedCity}"
                  IsTextSearchEnabled="False">
             </ComboBox>
             <!--<TextBox HorizontalAlignment="Left" Margin="439,284,0,0" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="City"  Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>-->
 
             <!--- State -->
             <Label Margin="439,330,0,0" Foreground="White">State</Label>
-            <TextBox HorizontalAlignment="Left" Margin="439,354,0,0" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="State"  Text="{Binding State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
+            <TextBox HorizontalAlignment="Left" Margin="439,354,0,0" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="State"  Text="{Binding AddressInfo.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
 
             <!--- Postal Code -->
             <Label Margin="709,330,0,0" Foreground="White">Postal Code</Label>
-            <TextBox HorizontalAlignment="Left" Margin="709,354,0,0" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="12345"  Text="{Binding PostalCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
+            <TextBox HorizontalAlignment="Left" Margin="709,354,0,0" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="12345"  Text="{Binding AddressInfo.PostalCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
 
             <!--- Street -->
             <Label Margin="439,400,0,0" Foreground="White">Street</Label>
-            <TextBox HorizontalAlignment="Left" Margin="439,424,0,0" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="Street"  Text="{Binding Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
+            <TextBox HorizontalAlignment="Left" Margin="439,424,0,0" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="Street"  Text="{Binding AddressInfo.Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
 
 
             <Button 

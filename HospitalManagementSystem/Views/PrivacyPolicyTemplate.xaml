@@ -121,8 +121,8 @@
                 <LineBreak/><LineBreak/>
             </TextBlock>
          </ScrollViewer>
-            <CheckBox Margin="439,500,10,10" Foreground="White" IsChecked="{Binding PrivacyPolicyChecked}">I Agree to the Privacy Policy</CheckBox>
-            <CheckBox Margin="439,530,10,10" Foreground="White" IsChecked="{Binding ShareInfoChecked}">Share information across Regions</CheckBox>
+            <CheckBox Margin="439,500,10,10" Foreground="White" IsChecked="{Binding PrivacyPolicy.PrivacyPolicyChecked}">I Agree to the Privacy Policy</CheckBox>
+            <CheckBox Margin="439,530,10,10" Foreground="White" IsChecked="{Binding PrivacyPolicy.ShareInfoChecked}">Share information across Regions</CheckBox>
             <Button 
                 Width="138" Height="46" 
                 Command="{Binding OnClickCommand}" 
