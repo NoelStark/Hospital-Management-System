@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="/HospitalManagementSystem;component/Views/PersonalInformationTemplate.xaml"/>
                 <ResourceDictionary Source="/HospitalManagementSystem;component/Views/AddressInformationTemplate.xaml"/>
                 <ResourceDictionary Source="/HospitalManagementSystem;component/Views/PrivacyPolicyTemplate.xaml"/>
+                <ResourceDictionary Source="/HospitalManagementSystem;component/Views/MainMenuTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
@@ -26,6 +27,11 @@
         <ContentControl.Style>
             <Style TargetType="ContentControl">
                 <Style.Triggers>
+
+                    <!--Trigger for the Personal Information View-->
+                    <DataTrigger Binding="{Binding CurrentViewKey}" Value="MainMenu">
+                        <Setter Property="ContentTemplate" Value="{StaticResource MainMenuTemplate}"/>
+                    </DataTrigger>
                     <!--Trigger for the Personal Information View-->
                     <DataTrigger Binding="{Binding CurrentViewKey}" Value="PersonalInformation">
                         <Setter Property="ContentTemplate" Value="{StaticResource PersonalInformationTemplate}"/>
@@ -38,6 +44,7 @@
                     <DataTrigger Binding="{Binding CurrentViewKey}" Value="PrivacyPolicyTemplate">
                         <Setter Property="ContentTemplate" Value="{StaticResource PrivacyPolicyTemplate}"/>
                     </DataTrigger>
+                    
                 </Style.Triggers>   
             </Style>
         </ContentControl.Style>

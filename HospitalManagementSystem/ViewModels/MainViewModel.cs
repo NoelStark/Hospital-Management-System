@@ -20,53 +20,19 @@ namespace HospitalManagementSystem.ViewModels
         private bool dummyData = false;
         public AddressViewModel AddressInfo { get; private set; }
         public PrivacyPolicyViewModel PrivacyPolicy { get; private set; }
+        public PersonalInfoViewModel PersonalInfo { get; private set; }
 
         #region Binding Attributes
-        private static string _firstname = "First Name", _lastname = "Last Name", _ssn = "YYYYMMDD-XXXX", _email = "example@gmail.com", _confirmemail = "example@gmail.com", _phone = "Phone Number";
         private List<string> _templates = new List<string>()
         {
-            "PersonalInformation", "Address", "PrivacyPolicyTemplate"
+            "PersonalInformation", "Address", "PrivacyPolicyTemplate", "MainMenu"
         };
 
         //Needed or not?
         public List<string> Countries { get; set; }
 
         private Dictionary<string, string> _customerProperties = new Dictionary<string, string>();
-        public string FirstName
-        {
-            get { return _firstname; }
-            set { _firstname = value; OnPropertyChanged();}
-        }
-
-        public string LastName
-        {
-            get { return _lastname; }
-            set { _lastname = value; OnPropertyChanged(); }
-        }
-
-        public string SSN
-        {
-            get { return _ssn; }
-            set { _ssn = value; OnPropertyChanged(); }
-        }
-
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; OnPropertyChanged(); }
-        }
-
-        public string ConfirmEmail
-        {
-            get { return _confirmemail; }
-            set { _confirmemail = value; OnPropertyChanged(); }
-        }
-
-        public string Phone
-        {
-            get { return _phone; }
-            set { _phone = value; OnPropertyChanged(); }
-        }
+       
 
        
 
@@ -96,9 +62,10 @@ namespace HospitalManagementSystem.ViewModels
         {
             AddressInfo = new AddressViewModel();
             PrivacyPolicy = new PrivacyPolicyViewModel();
+            PersonalInfo = new PersonalInfoViewModel();
             OnClickCommand = new RelayCommand(SwitchView);
             OnDummyDataCommand = new RelayCommand(DummyData);
-            CurrentViewKey = "PersonalInformation";
+            CurrentViewKey = "MainMenu";
             //_dataService = new DataService();
             //_countries = new DataService().LoadCountries(@"C:\Users\noelk\source\repos\HospitalManagementSystem\HospitalManagementSystem\Files\europe_countries_cities.json");
             //_filterService = new FilterService(_countries);
@@ -116,11 +83,11 @@ namespace HospitalManagementSystem.ViewModels
 
                 if(CurrentViewKey == "PersonalInformation")
                 {
-                    _customerProperties["FirstName"] = _firstname;
-                    _customerProperties["LastName"] = _lastname;
-                    _customerProperties["SSN"] = _ssn;
-                    _customerProperties["Email"] = _email;
-                    _customerProperties["Phone_Number"] = _phone;
+                    _customerProperties["FirstName"] = PersonalInfo.FirstName;
+                    _customerProperties["LastName"] = PersonalInfo.LastName;
+                    _customerProperties["SSN"] = PersonalInfo.SSN;
+                    _customerProperties["Email"] = PersonalInfo.Email;
+                    _customerProperties["Phone_Number"] = PersonalInfo.Phone;
                     CurrentViewKey = _templates[1];
                 }
                 //TODO Should be an else if-statement and not if-statement
@@ -151,11 +118,11 @@ namespace HospitalManagementSystem.ViewModels
         /// <param name="x"></param>
         private void DummyData(object x)
         {
-            FirstName = "Jöns";
-            LastName = "Jönsson";
-            Email = "jons@gmail.com";
-            SSN = "0101010101";
-            Phone = "0721234567";
+            PersonalInfo.FirstName = "Jöns";
+            PersonalInfo.LastName = "Jönsson";
+            PersonalInfo.Email = "jons@gmail.com";
+            PersonalInfo.SSN = "0101010101";
+            PersonalInfo.Phone = "0721234567";
             AddressInfo.SelectedCountry = "Sweden";
             AddressInfo.SelectedCity = "Gothenburg";
             AddressInfo.State = "Partille";

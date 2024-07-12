@@ -39,24 +39,24 @@
 
             <!-- First Name Textbox -->
             <Label Margin="439,190,0,0" Foreground="White">First Name</Label>
-            <TextBox HorizontalAlignment="Left" Margin="439,214,0,0" behaviors:TextBoxFocusBehavior.PlaceholderText="First Name"  TextWrapping="Wrap" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
+            <TextBox HorizontalAlignment="Left" Margin="439,214,0,0" behaviors:TextBoxFocusBehavior.PlaceholderText="First Name"  TextWrapping="Wrap" Text="{Binding PersonalInfo.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
             <!-- Last Name Textbox -->
             <Label Margin="709,190,0,0" Foreground="White">Last Name</Label>
-            <TextBox HorizontalAlignment="Left" Margin="709,214,0,0" behaviors:TextBoxFocusBehavior.PlaceholderText="Last Name" TextWrapping="Wrap" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
+            <TextBox HorizontalAlignment="Left" Margin="709,214,0,0" behaviors:TextBoxFocusBehavior.PlaceholderText="Last Name" TextWrapping="Wrap" Text="{Binding PersonalInfo.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
             <!-- SSN Textbox -->
             <Label Margin="439,260,0,0" Foreground="White">Social Security Number</Label>
-            <TextBox HorizontalAlignment="Left" Margin="439,284,0,404" behaviors:TextBoxFocusBehavior.PlaceholderText="YYYYMMDD-XXXX" TextWrapping="Wrap" Text="{Binding SSN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
+            <TextBox HorizontalAlignment="Left" Margin="439,284,0,404" behaviors:TextBoxFocusBehavior.PlaceholderText="YYYYMMDD-XXXX" TextWrapping="Wrap" Text="{Binding PersonalInfo.SSN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
 
             <!-- Phone Number Textbox -->
             <Label Margin="439,330,0,0" Foreground="White">Phone Number</Label>
-            <TextBox HorizontalAlignment="Left" Margin="440,354,0,330" behaviors:TextBoxFocusBehavior.PlaceholderText="Phone Number"  TextWrapping="Wrap" Text="{Binding Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="214" Height= "31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
+            <TextBox HorizontalAlignment="Left" Margin="440,354,0,330" behaviors:TextBoxFocusBehavior.PlaceholderText="Phone Number"  TextWrapping="Wrap" Text="{Binding PersonalInfo.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="214" Height= "31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D"/>
             <!-- Email Textbox -->
             <Label Margin="439,400,0,0" Foreground="White">Email</Label>
-            <TextBox Margin="440,424,0,265" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="example@gmail.com"  Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D" HorizontalAlignment="Left" />
+            <TextBox Margin="440,424,0,265" TextWrapping="Wrap" behaviors:TextBoxFocusBehavior.PlaceholderText="example@gmail.com"  Text="{Binding PersonalInfo.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D" HorizontalAlignment="Left" />
 
             <!-- Confirm Email Textbox-->
             <Label Margin="709,400,0,0" Foreground="White">Confirm Email</Label>
-            <TextBox Margin="709,424,0,265" behaviors:TextBoxFocusBehavior.PlaceholderText="example@gmail.com" TextWrapping="Wrap" Text="{Binding ConfirmEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D" HorizontalAlignment="Left"/>
+            <TextBox Margin="709,424,0,265" behaviors:TextBoxFocusBehavior.PlaceholderText="example@gmail.com" TextWrapping="Wrap" Text="{Binding PersonalInfo.ConfirmEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="214" Height="31" Style="{StaticResource RoundedTextBoxStyle}" Foreground="#FF6D6D6D" HorizontalAlignment="Left"/>
 
 
 
