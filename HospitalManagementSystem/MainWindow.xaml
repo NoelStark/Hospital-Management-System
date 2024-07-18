@@ -13,10 +13,12 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/HospitalManagementSystem;component/Views/PersonalInformationTemplate.xaml"/>
-                <ResourceDictionary Source="/HospitalManagementSystem;component/Views/AddressInformationTemplate.xaml"/>
-                <ResourceDictionary Source="/HospitalManagementSystem;component/Views/PrivacyPolicyTemplate.xaml"/>
+                <ResourceDictionary Source="/Views/PatientManagement/PersonalInformationTemplate.xaml"/>
+                <ResourceDictionary Source="/Views/PatientManagement/AddressInformationTemplate.xaml"/>
+                <ResourceDictionary Source="/Views/PatientManagement/PrivacyPolicyTemplate.xaml"/>
                 <ResourceDictionary Source="/HospitalManagementSystem;component/Views/MainMenuTemplate.xaml"/>
+                <ResourceDictionary Source="/Views/PatientManagement/PatientManagementTemplate.xaml"/>
+                <ResourceDictionary Source="/Views/PatientManagement/PatientRecordsTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
@@ -27,22 +29,30 @@
         <ContentControl.Style>
             <Style TargetType="ContentControl">
                 <Style.Triggers>
+                    <!--Trigger for the Patient Management View-->
+                    <DataTrigger Binding="{Binding CurrentViewKey}" Value="PatientManagementTemplate">
+                        <Setter Property="ContentTemplate" Value="{StaticResource PatientManagementTemplate}"/>
+                    </DataTrigger>
 
                     <!--Trigger for the Personal Information View-->
-                    <DataTrigger Binding="{Binding CurrentViewKey}" Value="MainMenu">
+                    <DataTrigger Binding="{Binding CurrentViewKey}" Value="MainMenuTemplate">
                         <Setter Property="ContentTemplate" Value="{StaticResource MainMenuTemplate}"/>
                     </DataTrigger>
                     <!--Trigger for the Personal Information View-->
-                    <DataTrigger Binding="{Binding CurrentViewKey}" Value="PersonalInformation">
+                    <DataTrigger Binding="{Binding CurrentViewKey}" Value="PersonalInformationTemplate">
                         <Setter Property="ContentTemplate" Value="{StaticResource PersonalInformationTemplate}"/>
                     </DataTrigger>
                     <!--Trigger for the Address View-->
-                    <DataTrigger Binding="{Binding CurrentViewKey}" Value="Address">
+                    <DataTrigger Binding="{Binding CurrentViewKey}" Value="AddressTemplate">
                         <Setter Property="ContentTemplate" Value="{StaticResource AddressInformationTemplate}"/>
                     </DataTrigger>
                     <!--Trigger for the Policy View-->
                     <DataTrigger Binding="{Binding CurrentViewKey}" Value="PrivacyPolicyTemplate">
                         <Setter Property="ContentTemplate" Value="{StaticResource PrivacyPolicyTemplate}"/>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding CurrentViewKey}" Value="PatientRecordsTemplate">
+                        <Setter Property="ContentTemplate" Value="{StaticResource PatientRecordsTemplate}"/>
                     </DataTrigger>
                     
                 </Style.Triggers>   

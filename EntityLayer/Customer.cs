@@ -9,7 +9,6 @@ namespace EntityLayer
     public class Customer : Person
     {
         public int CustomerID { get; set; }
-        public DateTime AccountCreationDate { get; set; }
         public bool ShareData { get; set; }
     }
 }

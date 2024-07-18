@@ -11,19 +11,19 @@
 
                 <Button Content="Patient Management" Width="250" Height="50" Margin="10" 
                         Background="#BC194F" Foreground="#D9D9D9" FontSize="16" FontWeight="Bold" 
-                        BorderBrush="#D9D9D9" BorderThickness="2"/>
+                        BorderBrush="#D9D9D9" BorderThickness="2" Command="{Binding OnPatientManagementCommand}"/>
 
                 <Button Content="Appointment Management" Width="250" Height="50" Margin="10" 
                         Background="#BC194F" Foreground="#D9D9D9" FontSize="16" FontWeight="Bold" 
-                        BorderBrush="#D9D9D9" BorderThickness="2"/>
+                        BorderBrush="#D9D9D9" BorderThickness="2" Command="{Binding OnAppointmentManagementCommand}"/>
 
                 <Button Content="Medical Records" Width="250" Height="50" Margin="10" 
                         Background="#BC194F" Foreground="#D9D9D9" FontSize="16" FontWeight="Bold" 
-                        BorderBrush="#D9D9D9" BorderThickness="2"/>
+                        BorderBrush="#D9D9D9" BorderThickness="2" Command="{Binding OnMedicalRecordsManagementCommand}"/>
 
                 <Button Content="Logout" Width="250" Height="50" Margin="10" 
                         Background="#D9D9D9" Foreground="#001E36" FontSize="16" FontWeight="Bold" 
-                        BorderBrush="#BC194F" BorderThickness="2"/>
+                        BorderThickness="2" Command="{Binding OnLogoutCommand}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>

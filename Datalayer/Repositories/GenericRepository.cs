@@ -13,6 +13,9 @@ namespace Datalayer.Repositories
         public void Add(TEntity entity)
         {
             _dbContext.Set<TEntity>().Add(entity);
+
+            //TODO This should be elsewhere
+            _dbContext.SaveChanges();
         }
 
         public void Update(TEntity entity)

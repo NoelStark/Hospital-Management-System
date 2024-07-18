@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 using BusinessLayer;
+using Datalayer;
 using EntityLayer;
 using HospitalManagementSystem.Commands;
 
@@ -16,25 +17,24 @@ namespace HospitalManagementSystem.ViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private string currentViewKey;
+        private static string currentViewKey = "MainMenuTemplate";
         private bool dummyData = false;
-        public AddressViewModel AddressInfo { get; private set; }
-        public PrivacyPolicyViewModel PrivacyPolicy { get; private set; }
-        public PersonalInfoViewModel PersonalInfo { get; private set; }
+        public AddressViewModel AddressInfo { get; private set; } = new AddressViewModel();
+        public PrivacyPolicyViewModel PrivacyPolicy { get; private set; } = new PrivacyPolicyViewModel();
+        public PersonalInfoViewModel PersonalInfo { get; private set; } = new PersonalInfoViewModel();
+
+        public PatientManagementViewModel PatientManagement { get; private set; }
 
         #region Binding Attributes
         private List<string> _templates = new List<string>()
         {
-            "PersonalInformation", "Address", "PrivacyPolicyTemplate", "MainMenu"
+            "PersonalInformation", "AddressTemplate", "PrivacyPolicyTemplate", "MainMenuTemplate", "PatientManagementTemplate"
         };
 
-        //Needed or not?
-        public List<string> Countries { get; set; }
 
         private Dictionary<string, string> _customerProperties = new Dictionary<string, string>();
-       
-
-       
+        
+        
 
         public string CurrentViewKey
         {
@@ -42,36 +42,58 @@ namespace HospitalManagementSystem.ViewModels
             set
             {
                 currentViewKey = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(CurrentViewKey));
             }
         }
-        
-      
-
-       
 
         #endregion
 
         #region Commands
         public ICommand OnClickCommand { get; set; }
         public ICommand OnDummyDataCommand { get; set; }
+        public ICommand OnPatientManagementCommand { get; set; }
+        public ICommand OnAppointmentManagementCommand { get; set; }
+        public ICommand OnMedicalRecordsManagementCommand { get; set; }
+        public ICommand OnLogoutCommand { get; set; }
 
-        
         #endregion
         public MainViewModel()
         {
-            AddressInfo = new AddressViewModel();
-            PrivacyPolicy = new PrivacyPolicyViewModel();
-            PersonalInfo = new PersonalInfoViewModel();
+            PatientManagement = new PatientManagementViewModel(this);
             OnClickCommand = new RelayCommand(SwitchView);
             OnDummyDataCommand = new RelayCommand(DummyData);
-            CurrentViewKey = "MainMenu";
+            OnPatientManagementCommand = new RelayCommand(PatientManagementView);
+            OnAppointmentManagementCommand = new RelayCommand(AppointmentManagementView);
+            OnMedicalRecordsManagementCommand = new RelayCommand(MedicalRecordsManagementView);
+            OnLogoutCommand = new RelayCommand(LoginView);
+            EntityFramework ef = new EntityFramework();
+            ef.Database.EnsureCreated();
             //_dataService = new DataService();
             //_countries = new DataService().LoadCountries(@"C:\Users\noelk\source\repos\HospitalManagementSystem\HospitalManagementSystem\Files\europe_countries_cities.json");
             //_filterService = new FilterService(_countries);
         }
 
-       
+        private void PatientManagementView(object x)
+        {
+            CurrentViewKey = "PatientManagementTemplate";
+        }
+
+        private void AppointmentManagementView(object x)
+        {
+            CurrentViewKey = "AppointmentManagementTemplate";
+        }
+
+        private void MedicalRecordsManagementView(object x)
+        {
+            CurrentViewKey = "PatientRecordsTemplate";
+        }
+
+        private void LoginView(object x)
+        {
+            CurrentViewKey = "Login";
+        }
+
+
         /// <summary>
         /// Fills the dicitonary with values and show the text view (address)
         /// on a button click
@@ -79,9 +101,8 @@ namespace HospitalManagementSystem.ViewModels
         /// <param name="x"></param>
         private void SwitchView(object x)
         {
-           
-
-                if(CurrentViewKey == "PersonalInformation")
+            
+                if(CurrentViewKey == "PersonalInformationTemplate")
                 {
                     _customerProperties["FirstName"] = PersonalInfo.FirstName;
                     _customerProperties["LastName"] = PersonalInfo.LastName;
@@ -91,7 +112,7 @@ namespace HospitalManagementSystem.ViewModels
                     CurrentViewKey = _templates[1];
                 }
                 //TODO Should be an else if-statement and not if-statement
-                else if(CurrentViewKey == "Address")
+                else if(CurrentViewKey == "AddressTemplate")
                 {
                     _customerProperties["Country"] = AddressInfo.SelectedCountry;
                     _customerProperties["State"] = AddressInfo.State;
@@ -109,6 +130,7 @@ namespace HospitalManagementSystem.ViewModels
                     else
                         CustomerController.CreateCustomer(_customerProperties, PrivacyPolicy.ShareInfoChecked);
                 }
+                
         }
         
         /// <summary>

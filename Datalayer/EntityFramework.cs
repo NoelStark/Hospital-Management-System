@@ -8,8 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Datalayer
 {
-    internal class EntityFramework : DbContext
+    public class EntityFramework : DbContext
     {
         public DbSet<Customer> Customers { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.UseSqlServer(
+            //    "");
+            base.OnConfiguring(optionsBuilder);
+        }
     }
 }

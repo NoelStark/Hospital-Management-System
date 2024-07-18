@@ -14,7 +14,7 @@ namespace HospitalManagementSystem.ViewModels
     public class AddressViewModel : INotifyPropertyChanged
     {
         private string _country = "Country", _street = "Street", _postalcode = "12345", _city = "City", _state = "State";
-        private List<CountryData>? _countries;
+        private static List<CountryData>? _countries;
         private List<string> _cities;
         private string _selectedCountry, _countrySearch, _selectedCity, _citySearch;
         private FilterService _filterService;
@@ -125,10 +125,14 @@ namespace HospitalManagementSystem.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        static AddressViewModel()
+        {
+            _countries = new DataService().LoadCountries(@"C:\Users\noelk\source\repos\HospitalManagementSystem\HospitalManagementSystem\Files\europe_countries_cities.json");
+
+        }
         public AddressViewModel()
         {
             _dataService = new DataService();
-            _countries = new DataService().LoadCountries(@"C:\Users\noelk\source\repos\HospitalManagementSystem\HospitalManagementSystem\Files\europe_countries_cities.json");
             _filterService = new FilterService(_countries);
         }
 
